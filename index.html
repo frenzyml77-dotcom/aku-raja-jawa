@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>web punya gua jir</title>
+    <style>
+        /* CSS untuk Styling & Animasi Latar Belakang */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: #1a1a2e;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .background-circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .background-circles li {
+            position: absolute;
+            display: block;
+            list-style: none;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            animation: animate 25s linear infinite;
+            bottom: -150px;
+        }
+
+        .background-circles li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+        .background-circles li:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+        .background-circles li:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+        .background-circles li:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
+        .background-circles li:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
+        .background-circles li:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
+        .background-circles li:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
+        .background-circles li:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
+        .background-circles li:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
+        .background-circles li:nth-child(10) { left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; }
+
+        @keyframes animate {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
+            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; }
+        }
+
+        /* CSS untuk Kartu Nama */
+        .profile-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px 40px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease-in-out;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-15px);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .typewriter-container {
+            min-height: 50px;
+            font-size: 1.2em;
+            color: #ffcc00;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .social-links {
+            margin-top: 25px;
+        }
+
+        .social-links a {
+            color: #fff;
+            margin: 0 15px;
+            font-size: 1.5em;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+        }
+        .social-links a:hover {
+            color: #ffcc00;
+        }
+
+        .blinking-cursor {
+            font-weight: 100;
+            font-size: 1.5em;
+            color: #ffcc00;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { color: transparent; }
+            50% { color: #ffcc00; }
+        }
+
+    </style>
+</head>
+<body>
+
+<ul class="background-circles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+<div class="profile-card">
+    <h1>Frenzych</h1>
+    <div class="typewriter-container">
+        <span id="typed-text"></span><span class="blinking-cursor">|</span>
+    </div>
+    <div class="social-links">
+        <a href="https://youtube.com/@frenzyryuu771?si=Xgw_hGbV31mu_NAO" target="_blank">Youtube</a>
+        <a href="https://vm.tiktok.com/ZSAuqUHCd/" target="_blank">Tiktok</a>
+        <a href="https://www.instagram.com/frzyryu?igsh=bGg0cTQ5MnA2ZTAx" target="_blank">Instagram</a>
+    </div>
+</div>
+
+<script>
+    // JavaScript untuk Efek Ketikan
+    const typedTextSpan = document.getElementById('typed-text');
+    const textArray = [
+        "Nama saya Frenzych.",
+        "Saya lagi belajar ngoding.",
+        "Senang bisa berkenalan!",
+        "Ayo kita belajar bersama sama"
+        
+    ];
+    const typingDelay = 100;
+    const erasingDelay = 50;
+    const newTextDelay = 2000;
+    let textArrayIndex = 0;
+    let charIndex = 0;
+
+    function type() {
+        if (charIndex < textArray[textArrayIndex].length) {
+            typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+            charIndex++;
+            setTimeout(type, typingDelay);
+        } else {
+            setTimeout(erase, newTextDelay);
+        }
+    }
+
+    function erase() {
+        if (charIndex > 0) {
+            typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
+            charIndex--;
+            setTimeout(erase, erasingDelay);
+        } else {
+            textArrayIndex++;
+            if (textArrayIndex >= textArray.length) {
+                textArrayIndex = 0;
+            }
+            setTimeout(type, typingDelay + 1100);
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        if (textArray.length) setTimeout(type, newTextDelay + 250);
+    });
+</script>
+
+</body>
+</html>
